@@ -8,6 +8,9 @@ T5 ECE 382
 Capt Trimble  
 
 #Prelab
+###Flowchart
+A basic flowchart was developed for the basic functionality.
+![alt text](https://github.com/JasperArneberg/ECE382_Lab2/blob/master/prelab2_flowchart.jpg?raw=true "Prelab Flowchart")
 
 ###Pseudocode and Interfaces
 Pseudocode was developed for the prelab. Additionally, the inputs and outputs for each subroutine were explicitly listed.
@@ -49,7 +52,7 @@ decrpyt_byte:
     ret
 ```
 
-![alt text](https://github.com/JasperArneberg/ECE382_Lab2/blob/master/prelab2_flowchart.jpg?raw=true "Prelab Flowchart")
+
 
 
 
