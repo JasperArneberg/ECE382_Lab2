@@ -84,11 +84,15 @@ The purpose of this lab is to get familiar with subroutines. Both call-by-value 
 
 ####Basic Functionality: 
 Decoding the basic functionality test gave the following message:  
+```
 Congratulations! You decrypted the ECE382 message and achieved required functionality#
+```
 
 ####B Functionality: 
 Decoding the B functionality test gave the following message:  
+```
 The message key length is 16 bits. It only contains letters, periods, and spaces.
+```
 
 ####A Functionality: 
 
