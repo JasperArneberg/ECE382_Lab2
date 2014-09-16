@@ -18,7 +18,7 @@
             .retainrefs                     ; Additionally retain any sections
                                             ; that have references to current
                                             ; section
-message:	.byte		0x00, 0x11, 0x11
+message:	.byte		0x12, 0x11, 0x11
 key:		.equ		0xac
 
 			.data
@@ -34,9 +34,9 @@ StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
 
 initialize:
 		;load key and memory addresses
-		mov.b		#message,	R5
-		mov.b		#key,		R6
-		mov.b		#results,	R7
+		mov			#message,	R5
+		mov			#key,		R6
+		mov			#results,	R7
 		call		#decrypt_message
 
 end:
@@ -57,7 +57,7 @@ decrypt_message:
     	call 		#decrypt_byte
     	;store result in R8 to RAM
     	mov.b		R8,			0(R7)
-    	inc.b		R7
+    	inc			R7
     ret
 
 ;---------------------------------------------------
