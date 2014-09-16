@@ -7,7 +7,23 @@ C3C Jasper Arneberg
 T5 ECE 382
 Capt Trimble  
 
-#Prelab
+##Prelab
+###Concept
+
+The truth table below demonstrates the following:  
+```
+(A xor B) xor B = A  
+```
+
+| A | B | C = A xor B | C xor B |
+| :--: | :--: | :--: | :----: |
+| 0 | 0 | 0 | 0 |
+| 0 | 1 | 1 | 0 |
+| 1 | 0 | 0 | 1 |
+| 1 | 1 | 0 | 1 |
+
+This shows how the key (B) is used to encrypt and then decrypt a message.
+
 ###Flowchart
 A flowchart was developed for the basic functionality.
 ![alt text](https://github.com/JasperArneberg/ECE382_Lab2/blob/master/prelab2_flowchart.jpg?raw=true "Prelab Flowchart")
@@ -56,14 +72,14 @@ decrpyt_byte:
 
 
 
-#Lab
+##Lab
 
-##Objective
+###Objective
 The purpose of this lab is to get familiar with subroutines. Both call-by-value and call-by-address subroutines must be used in decrypting a message using a key.
 
-##Debugging
+###Debugging
 
-##Testing
+###Testing
 
 
 ####Basic Functionality: 
@@ -72,7 +88,7 @@ The purpose of this lab is to get familiar with subroutines. Both call-by-value 
 
 ####A Functionality: 
 
-#Conclusion
+##Conclusion
 
-#Documentation
+##Documentation
 None.
