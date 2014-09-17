@@ -95,6 +95,34 @@ The message key length is 16 bits. It only contains letters, periods, and spaces
 ```
 
 ####A Functionality: 
+At first, the hint found in the B functionality was confusing. It was interpreted as 16 bytes instead of 16 bits. A key length of 16 bits means that it is 2 bytes long.  
+
+To solve this problem, one assumption was tested: the last character is a period.  
+
+This was tested by performing an xor on the last encoded character, 0x90, and the period ASCII code, 0x2E. The result for this was 0xBE.  
+
+Next, the code was decrypted using a key of 0xFF,0xBE. This code was chosen because the last character was an even number. Here was the result:
+```
+.	a	.	t	.	.	.	e	.	t	.	.
+.	v	.	r	.	g	.	.	.	F	.	i
+.	n	.	l	.	.	.	G	.	o	.	.
+.	G	.	o	.	.
+```
+This shows that the initial assumption was most likely correct. All of the decrypted values were characters or punctuation.
+
+To solve for the first byte of the key, a second pivotal assumption was made: the characters before 'F' and the two instances of 'G' are spaces. This is supported by the fact that all of these characters are encoded with a value of 0x53.  
+
+To find the first byte of the key, an xor was performed between the encoded character 0x53 and the ASCII code for a space, 0x20. This gave a result of 0x73.
+
+Using a key of 0x73,0xBE, the following result was obtained:
+```
+F	a	s	t	.	.	N	e	a	t	.	.
+A	v	e	r	a	g	e	.	.	F	r	i
+e	n	d	l	y	.	.	G	o	o	d	.
+.	G	o	o	d	.
+```
+
+The message is "Fast, Neat, Average, Friendly, Good, Good."
 
 ##Conclusion
 
