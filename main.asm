@@ -6,8 +6,14 @@
 ;
 ; Documentation: None
 ;
-; Description:
+; Description: This program is used to decrypt secret messages. The program
+; implements two subroutines. One decrypts the entire message while the other
+; just decrypts a single byte. The decrypter can use a key of any length as
+; long as the length is specfied in the key_length constant. Additionally,
+; the message length must be specified prior to running the program.
 ;
+; The test_key label was used to determine the key of an unknown secret message.
+; The processes used are fully described in the README file.
 ;-------------------------------------------------------------------------------
             .cdecls C,LIST,"msp430.h"       ; Include device header file
 
@@ -19,10 +25,10 @@
                                             ; that have references to current
                                             ; section
 message:	.byte		0x35,0xdf,0x00,0xca,0x5d,0x9e,0x3d,0xdb,0x12,0xca,0x5d,0x9e,0x32,0xc8,0x16,0xcc,0x12,0xd9,0x16,0x90,0x53,0xf8,0x01,0xd7,0x16,0xd0,0x17,0xd2,0x0a,0x90,0x53,0xf9,0x1c,0xd1,0x17,0x90,0x53,0xf9,0x1c,0xd1,0x17,0x90
-key:		.byte		0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+key:		.byte		0x73,0xBE
 
 message_length:		.equ		42
-key_length:			.equ		8
+key_length:			.equ		2
 
 			.data
 results:	.space		42					;256 bytes of memory in RAM
@@ -35,9 +41,9 @@ StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
                                             ; Main loop here
 ;-------------------------------------------------------------------------------
 testkey:
-		mov.b		#0x90,		R4
-		mov.b		#0x2E,		R5
-		xor			R4,			R5
+		mov.b		#0x53,		R4
+		mov.b		#0x20,		R5
+		xor			R5,			R4
 
 initialize:
 		;load key and memory addresses
@@ -80,9 +86,9 @@ decrypt_message:
 ;Subroutine Name: decrpyt_byte
 ;Author: C2C Jasper Arneberg, USAF
 ;Function: Decrpyts single byte
-;Inputs: message byte in R8, key in R6, key_length in R10
+;Inputs: message byte in R8, key address in R6, key_length in R10
 ;Outputs: result in R8
-;Registers destroyed: R8
+;Registers destroyed: R8, R13
 ;---------------------------------------------------
 decrypt_byte:
     	;xor R8 message byte and R6 key
