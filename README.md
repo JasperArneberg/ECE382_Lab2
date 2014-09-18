@@ -78,7 +78,7 @@ decrpyt_byte:
 The purpose of this lab is to get familiar with subroutines. Both call-by-value and call-by-address subroutines must be used in decrypting a message using a key.
 
 ###Testing and Debugging
-Since this lab was discovery-focused, testing and debuggin occurred simultaneously.
+Since this lab was discovery-focused, testing and debugging occurred simultaneously.
 
 ####Basic Functionality:
 One error that was encountered was that the program did not execute for the entire message. This was caused because the message_length parameter was not appropriate for the message. This was updated manually, and the program worked. 
@@ -97,13 +97,13 @@ The message key length is 16 bits. It only contains letters, periods, and spaces
 ```
 
 ####A Functionality: 
-At first, the hint found in the B functionality was confusing. It was originally interpreted as 16 bytes instead of 16 bits. A 16-byte code would have presented an extremely difficult challengin. A key length of 16 bits (2 bytes), however, was fairly straightforward to crack.  
+At first, the hint found in the B functionality was confusing. It was originally interpreted as 16 bytes instead of 16 bits. A 16-byte code would have presented an extremely difficult challenge. A key length of 16 bits (2 bytes), however, was fairly straightforward to crack.  
 
 To solve this problem, the first assumption was tested: the last character is a period.  
 
 This was tested by performing an xor on the last encoded character, 0x90, and the period ASCII code, 0x2E. The result for this was 0xBE.  
 
-Next, the code was decrypted using a key of 0xFF,0xBE. This code was chosen because the last character was an even number. Here was the result:
+Next, the code was decrypted using a key of 0xFF,0xBE. The value 0xBE was chosen as the second byte because the last character, the expected period, was an even character. Here was the result:
 ```
 .	a	.	t	.	.	.	e	.	t	.	.
 .	v	.	r	.	g	.	.	.	F	.	i
@@ -111,8 +111,6 @@ Next, the code was decrypted using a key of 0xFF,0xBE. This code was chosen beca
 .	G	.	o	.	.
 ```
 This shows that the initial assumption was most likely correct. All of the decrypted values were characters or punctuation.
-
-
 
 To solve for the first byte of the key, a second pivotal assumption was made: the characters before 'F' and the two instances of 'G' are spaces. This is supported by the fact that all of these characters are originally encoded with a value of 0x53.  
 
